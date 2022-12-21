@@ -1,4 +1,4 @@
-# [Team Name] Project Rubric
+# aardvark Project Rubric
 
 ## Background
 

@@ -1,4 +1,4 @@
-# [Team name] Reflection
+# aardvark Reflection
 
 ## Instructions
 

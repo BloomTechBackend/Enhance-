@@ -1,4 +1,4 @@
-# [team name] Team Charter
+# aardvark Team Charter
 
 ## Instructions
 

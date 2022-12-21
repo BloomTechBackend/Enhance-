@@ -1,4 +1,4 @@
-# [team name] Design Document
+# aardvark Design Document
 
 ## Instructions
 
