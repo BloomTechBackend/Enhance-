@@ -1,4 +1,4 @@
-# aardvark Design Document
+# team aardvark Design Document
 
 ## Instructions
 
@@ -13,11 +13,15 @@ italics)*
 this template for more guidance on the types of information to capture, and the
 level of detail to aim for.*
 
-## *Project Title* Design
+## Enhance! Design Doc
 
-## 1. Problem Statement
+[## 1. Problem Statement
 
-*Explain clearly what problem you are trying to solve.*
+Habitual and effective journaling has been shown to be associated with significant
+improvements in working memory and one's ability to identify useful fact-patterns
+in one's behavior and environment. This design document describes a web-based journaling app intended
+
+# to specifically maximize the memory capacity and pattern-analysis returns on journaling-time investment. ](__)
 
 
 ## 2. Top Questions to Resolve in Review
@@ -25,9 +29,9 @@ level of detail to aim for.*
 *List the most important questions you have about your design, or things that
 you are still debating internally that you might like help working through.*
 
-1.   
-2.   
-3.  
+1. Should writing prompts be user-editable? 
+2. Should users have the option of adding their own prompts?
+3. Should use cases 1 and 2 be accessible separately, or as part of a single entry-writing process? 
 
 ## 3. Use Cases
 
@@ -35,12 +39,10 @@ you are still debating internally that you might like help working through.*
 would like to do (and why). You may also include use cases for yourselves, or
 for the organization providing the product to customers.*
 
-U1. *As a [product] customer, I want to `<result>` when I `<action>`*
-
-U2. *As a [product] customer, I want to view my grocery list when I log into the
-grocery list page*
-    
-U3. ...
+1. As a customer, I want to write a journal entry in response to writing prompts.
+2. As a customer, I want to write a short entry analyzing last week's journal entry.
+3. As a customer, I want to access a specific journal entry by date, with the following
+week's analysis included (if available).
 
 ## 4. Project Scope
 
