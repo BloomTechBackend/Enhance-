@@ -76,4 +76,4 @@ entry // string (S3 link saved as JSON string)
 
 ## 7. Pages
 
-![](/home/alessandro/Downloads/pageOverview.png)
+![](images/design_document/pageOverview.png)
