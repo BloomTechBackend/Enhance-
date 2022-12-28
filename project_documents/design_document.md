@@ -1,123 +1,79 @@
-# team aardvark Design Document
+# *Enhance!* Design Document
 
-## Instructions
-
-*Save a copy of this template for your team in the same folder that contains
-this template.*
-
-*Replace italicized text (including this text!) with details of the design you
-are proposing for your team project. (Your replacement text shouldn't be in
-italics)*
-
-*You should take a look at the example design document in the same folder as
-this template for more guidance on the types of information to capture, and the
-level of detail to aim for.*
-
-## Enhance! Design Doc
-
-[## 1. Problem Statement
+## 1. Problem Statement
 
 Habitual and effective journaling has been shown to be associated with significant
-improvements in working memory and one's ability to identify useful fact-patterns
-in one's behavior and environment. This design document describes a web-based journaling app intended
+improvements in working memory and the ability to identify useful fact-patterns
+in one's behavior and environment. With the aim of capturing these benefits, this 
+design document describes a web-based journaling app intended to specifically maximize 
+the memory capacity and pattern-analysis returns on journaling-time investment.
 
-# to specifically maximize the memory capacity and pattern-analysis returns on journaling-time investment. ](__)
+## 2. Use Cases
+
+U1. As a customer, I want to write a journal entry in response to writing prompts. 
+
+U2. As a customer, I want to write a short addendum analyzing last week's journal entry. 
+
+U3. As a customer, I want to access a specific journal entry by date, with the previous day's goals 
+(one of the prompts) and the following week's analysis included (if available).
+
+## 3. Project Scope
+
+### 3.1 In Scope
+- Creating a journal entry given a pre-defined set of prompts
+- Retrieve an entry by date
+
+### 3.2 Out of Scope
+- Editing a stored journal entry
+- Editing or adding custom writing prompts
+- Searching through all entries for patterns and key-words
+
+## 4. Proposed Architecture Overview
+
+This initial iteration will provide the minimum lovable product (MLP) including creating as well as retrieving a journal entry.
+
+We will use API Gateway and Lambda to create two endpoints (GetEntry and CreateEntry) that will handle the creation and retrieval of journal entries to satisfy our requirements.
+
+We will store journal entries in a table in DynamoDB.
+
+*Enhance!* will also include a web interface to guide users in the creation and retrieval of journal entries. 
+A main page will allow users to input a date to download a previous entry and link to a page where they can compose a new entry.
+
+## 5. API
+
+### 5.1. Public Models
+
+```
+// EntryModel
+
+String userId;
+String date;
+S3link entry;
+```
+
+### 5.2. *Get Entry Endpoint*
+
+Accepts `GET` requests to `/entries/userId/date`
+Accepts a user ID and date and returns the corresponding entry file (stored on AWS S3).
+If an entry for the given date is not found, will throw a `EntryNotFoundException`.
+
+### 5.3 *Create Entry Endpoint*
+Accepts `POST` requests to `/entries/userId`
+Accepts data to create a new entry associated with the provided user ID and the date at the moment the request is made. 
+Returns the new entry. If the user ID does is not found, throws an `InvalidUserIdException`. If an entry with the given date already exists,
+throws a `DuplicateEntryException`.
 
 
-## 2. Top Questions to Resolve in Review
+## 6. Tables
 
-*List the most important questions you have about your design, or things that
-you are still debating internally that you might like help working through.*
+### 6.1 `entries`
+```
+// entries
+userId // partition key, string
+date // sort key, string
+entry // string (S3 link saved as JSON string)
+```
 
-1. Should writing prompts be user-editable? 
-2. Should users have the option of adding their own prompts?
-3. Should use cases 1 and 2 be accessible separately, or as part of a single entry-writing process? 
+## 7. Pages
 
-## 3. Use Cases
-
-*This is where we work backwards from the customer and define what our customers
-would like to do (and why). You may also include use cases for yourselves, or
-for the organization providing the product to customers.*
-
-1. As a customer, I want to write a journal entry in response to writing prompts.
-2. As a customer, I want to write a short entry analyzing last week's journal entry.
-3. As a customer, I want to access a specific journal entry by date, with the following
-week's analysis included (if available).
-
-## 4. Project Scope
-
-*Clarify which parts of the problem you intend to solve. It helps reviewers know
-what questions to ask to make sure you are solving for what you say and stops
-discussions from getting sidetracked by aspects you do not intend to handle in
-your design.*
-
-### 4.1. In Scope
-
-*Which parts of the problem defined in Sections 1 and 3 will you solve with this
-design?*
-
-### 4.2. Out of Scope
-
-*Based on your problem description in Sections 1 and 3, are there any aspects
-you are not planning to solve? Do potential expansions or related problems occur
-to you that you want to explicitly say you are not worrying about now? Feel free
-to put anything here that you think your team can't accomplish in the unit, but
-would love to do with more time.*
-
-# 5. Proposed Architecture Overview
-
-*Describe broadly how you are proposing to solve for the requirements you
-described in Section 3.*
-
-*This may include class diagram(s) showing what components you are planning to
-build.*
-
-*You should argue why this architecture (organization of components) is
-reasonable. That is, why it represents a good data flow and a good separation of
-concerns. Where applicable, argue why this architecture satisfies the stated
-requirements.*
-
-# 6. API
-
-## 6.1. Public Models
-
-*Define the data models your service will expose in its responses via your
-*`-Model`* package. These will be equivalent to the *`PlaylistModel`* and
-*`SongModel`* from the Unit 3 project.*
-
-## 6.2. *First Endpoint*
-
-*Describe the behavior of the first endpoint you will build into your service
-API. This should include what data it requires, what data it returns, and how it
-will handle any known failure cases. You should also include a sequence diagram
-showing how a user interaction goes from user to website to service to database,
-and back. This first endpoint can serve as a template for subsequent endpoints.
-(If there is a significant difference on a subsequent endpoint, review that with
-your team before building it!)*
-
-*(You should have a separate section for each of the endpoints you are expecting
-to build...)*
-
-## 6.3 *Second Endpoint*
-
-*(repeat, but you can use shorthand here, indicating what is different, likely
-primarily the data in/out and error conditions. If the sequence diagram is
-nearly identical, you can say in a few words how it is the same/different from
-the first endpoint)*
-
-# 7. Tables
-
-*Define the DynamoDB tables you will need for the data your service will use. It
-may be helpful to first think of what objects your service will need, then
-translate that to a table structure, like with the *`Playlist` POJO* versus the
-`playlists` table in the Unit 3 project.*
-
-# 8. Pages
-
-*Include mock-ups of the web pages you expect to build. These can be as
-sophisticated as mockups/wireframes using drawing software, or as simple as
-hand-drawn pictures that represent the key customer-facing components of the
-pages. It should be clear what the interactions will be on the page, especially
-where customers enter and submit data. You may want to accompany the mockups
-with some description of behaviors of the page (e.g. “When customer submits the
-submit-dog-photo button, the customer is sent to the doggie detail page”)*
+![](/home/alessandro/Downloads/pageOverview.png)
