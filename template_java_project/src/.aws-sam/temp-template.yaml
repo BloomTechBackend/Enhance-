@@ -1,0 +1,11 @@
+Resources:
+  Function:
+    Type: AWS::Serverless::Function
+    Properties:
+      Timeout: 300
+      MemorySize: 128
+      Handler: lambda.injectors.GetUserInjector
+      CodeUri: /home/alessandro/bloomtech/unit5/bd-team-project-aardvark/template_java_project
+      Runtime: java11
+      Architectures:
+        - x86_64
