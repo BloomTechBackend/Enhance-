@@ -5,7 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.*;
 public class JournalEntry {
     private String userId;
     private String date;
-    private S3Link entry;
+    private String entry;
 
     @DynamoDBHashKey(attributeName = "userId")
     public String getUserId() {
@@ -26,11 +26,11 @@ public class JournalEntry {
     }
 
     @DynamoDBAttribute(attributeName = "entry")
-    public S3Link getEntry() {
+    public String getEntry() {
         return entry;
     }
 
-    public void setEntry(S3Link entry) {
+    public void setEntry(String entry) {
         this.entry = entry;
     }
 }

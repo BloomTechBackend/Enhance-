@@ -21,7 +21,7 @@ public class GetEntry implements RequestHandler<GetEntryRequest, GetEntryResult>
     /**
      * Handles a Lambda Function request
      *
-     * @param getEntryRequest   The Lambda Function input
+     * @param input   The Lambda Function input
      * @param context The Lambda execution environment context object.
      * @return The Lambda Function output
      */
@@ -38,7 +38,7 @@ public class GetEntry implements RequestHandler<GetEntryRequest, GetEntryResult>
         }
 
         return new GetEntryResult.Builder()
-                .entryUrl(journalEntry.getEntry().getUrl())
+                .entry(journalEntry.getEntry())
                 .build();
     }
 }

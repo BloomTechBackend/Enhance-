@@ -1,12 +1,11 @@
 package lambda.models.request;
 
-import java.io.File;
 import java.util.Objects;
 
 public class CreateEntryRequest {
     private String userId;
     private String date;
-    private File entry;
+    private String entry;
 
     public CreateEntryRequest() {
 
@@ -34,11 +33,11 @@ public class CreateEntryRequest {
         this.date = date;
     }
 
-    public File getEntry() {
+    public String getEntry() {
         return entry;
     }
 
-    public void setEntry(File entry) {
+    public void setEntry(String entry) {
         this.entry = entry;
     }
 
@@ -69,7 +68,7 @@ public class CreateEntryRequest {
     public static final class Builder {
         private String userId;
         private String date;
-        private File entry;
+        private String entry;
 
         public Builder() {
         }
@@ -84,7 +83,7 @@ public class CreateEntryRequest {
             return this;
         }
 
-        public Builder entry(File val) {
+        public Builder entry(String val) {
             entry = val;
             return this;
         }

@@ -11,6 +11,7 @@ import lambda.models.result.CreateEntryResult;
 
 import javax.inject.Inject;
 import java.io.File;
+import java.net.URL;
 
 public class CreateEntry implements RequestHandler<CreateEntryRequest, CreateEntryResult> {
     private JournalEntryDao journalEntryDao;
@@ -32,13 +33,12 @@ public class CreateEntry implements RequestHandler<CreateEntryRequest, CreateEnt
 
         String userId = input.getUserId();
         String date = input.getDate();
-        File entry = input.getEntry();
+        String entry = input.getEntry();
 
         JournalEntry journalEntry = new JournalEntry();
         journalEntry.setUserId(userId);
         journalEntry.setDate(date);
-        journalEntry.setEntry(journalEntryDao.createLink(journalEntry));
-        journalEntry.getEntry().uploadFrom(entry);
+        journalEntry.setEntry(entry);
 
         journalEntryDao.saveJournalEntry(journalEntry);
 

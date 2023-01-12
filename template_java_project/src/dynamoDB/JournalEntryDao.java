@@ -1,8 +1,6 @@
 package dynamoDB;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.S3Link;
-import com.amazonaws.services.dynamodbv2.xspec.S;
 import dynamoDB.models.JournalEntry;
 import exceptions.EntryNotFoundException;
 
@@ -29,9 +27,4 @@ public class JournalEntryDao {
         dynamoDBMapper.save(journalEntry);
         return journalEntry;
     }
-
-    public S3Link createLink(JournalEntry journalEntry) {
-        return dynamoDBMapper.createS3Link("us-west-2", "enhance-entries", journalEntry.getDate());
-    }
-
 }

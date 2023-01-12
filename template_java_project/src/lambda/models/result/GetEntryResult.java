@@ -1,31 +1,29 @@
 package lambda.models.result;
 
-import java.net.URL;
-
 public class GetEntryResult {
-    private URL entryUrl;
+    private String entry;
 
     private GetEntryResult(Builder builder) {
-        setEntryUrl(builder.entryUrl);
+        setEntry(builder.entry);
     }
 
-    public URL getEntryUrl() {
-        return entryUrl;
+    public String getEntry() {
+        return entry;
     }
 
-    public void setEntryUrl(URL entryUrl) {
-        this.entryUrl = entryUrl;
+    public void setEntry(String entry) {
+        this.entry = entry;
     }
 
 
     public static final class Builder {
-        private URL entryUrl;
+        private String entry;
 
         public Builder() {
         }
 
-        public Builder entryUrl(URL val) {
-            entryUrl = val;
+        public Builder entry(String val) {
+            entry = val;
             return this;
         }
 
