@@ -1,15 +1,12 @@
-table {
-  border-collapse: collapse;
+form {
+    text-align: center;
 }
 
-table, th, td {
-  border: 1px solid black;
+#login {
+    text-align: center;
 }
 
-th {
-  background: #99ccff;
-}
 
-th, td {
-  padding: 6px;
-}
+
+
+

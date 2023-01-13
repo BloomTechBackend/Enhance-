@@ -2,7 +2,6 @@ package lambda.functions;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import converters.ModelConverter;
 import dynamoDB.UserDao;
 import dynamoDB.models.User;
 import lambda.models.request.GetUserRequest;
@@ -30,10 +29,10 @@ public class GetUser implements RequestHandler<GetUserRequest, GetUserResult> {
 
         String userId = input.getUserId();
 
-        User user = userDao.getUser(userId);
+        userDao.getUser(userId);
 
         return new GetUserResult.Builder()
-                .user(new ModelConverter().toUserModel(user))
+                .userId(userId)
                 .build();
     }
 }

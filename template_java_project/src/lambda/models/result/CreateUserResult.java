@@ -1,30 +1,28 @@
 package lambda.models.result;
 
-import lambda.models.UserModel;
-
 public class CreateUserResult {
-    private UserModel user;
+    private String userId;
 
     private CreateUserResult(Builder builder) {
-        setUser(builder.user);
+        setUserId(builder.userId);
     }
 
-    public UserModel getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser(UserModel user) {
-        this.user = user;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public static final class Builder {
-        private UserModel user;
+        private String userId;
 
         public Builder() {
         }
 
-        public Builder user(UserModel val) {
-            user = val;
+        public Builder userId(String val) {
+            userId = val;
             return this;
         }
 

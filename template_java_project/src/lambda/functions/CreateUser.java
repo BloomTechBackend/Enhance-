@@ -2,7 +2,6 @@ package lambda.functions;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import converters.ModelConverter;
 import dynamoDB.UserDao;
 import dynamoDB.models.User;
 import exceptions.DuplicateUserException;
@@ -40,7 +39,7 @@ public class CreateUser implements RequestHandler<CreateUserRequest, CreateUserR
         }
 
         return new CreateUserResult.Builder()
-                .user(new ModelConverter().toUserModel(user))
+                .userId(userId)
                 .build();
     }
 }

@@ -4,21 +4,21 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="index.js" defer></script>
-    <title>Fun with JS!</title>
+    <title>Enhance!</title>
   </head>
   <body>
-    <h2>My Playlists</h2>
-      <ul id="playlists">
-      </ul>
-    <h2>Create a Playlist</h2>
-    <form class="card-content" id="create-playlist-form">
-      <label>Playlist Name
-        <input type="text" required class="validated-field" id="playlist-name" placeholder="smooth-jamz" autofocus>
+  <div id="login">
+      <h2><a href="create.html">create an entry</a></h2>
+      <h2>retrieve an entry</h2>
+    <form class="card-content" id="getEntry">
+      <label>date
+        <input type="text" id="date" placeholder="mmddyyyy" autofocus>
       </label>
-      <label>Tags
-        <input type="text" id="tags" class="tags" placeholder="tag1,tag2" data-tip="Must be a comma separated list of tags.">
-      </label>
-      <input type="submit" id="create" value="Create">
+        <button id="get">get</button>
     </form>
+      <form>
+          <textarea class="entry-content" id="entry" rows="40" cols="100"></textarea>
+      </form>
+  </div>
   </body>
 </html>
