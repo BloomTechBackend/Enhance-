@@ -8,6 +8,7 @@ signIn.addEventListener("click", signInClick);
 create.addEventListener("click", createClick);
 
 function signInClick(event) {
+    id.innerText = "please wait for up to 15 seconds";
   let userId = document.getElementById("userId").value;
   localStorage.setItem("userId", userId);
   axios.get(url + userId).then((res) => {
@@ -23,6 +24,7 @@ function signInClick(event) {
 }
 
 function createClick(event) {
+    id.innerText = "please wait for up to 15 seconds";
   let userId = "non";
   axios.post(url + userId).then((res) => {
     console.log(res);

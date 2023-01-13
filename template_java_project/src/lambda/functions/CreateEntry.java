@@ -10,8 +10,6 @@ import lambda.models.request.CreateEntryRequest;
 import lambda.models.result.CreateEntryResult;
 
 import javax.inject.Inject;
-import java.io.File;
-import java.net.URL;
 
 public class CreateEntry implements RequestHandler<CreateEntryRequest, CreateEntryResult> {
     private JournalEntryDao journalEntryDao;

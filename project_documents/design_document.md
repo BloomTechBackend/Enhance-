@@ -12,10 +12,7 @@ the memory capacity and pattern-analysis returns on journaling-time investment.
 
 U1. As a customer, I want to write a journal entry in response to writing prompts. 
 
-U2. As a customer, I want to write a short addendum analyzing last week's journal entry. 
-
-U3. As a customer, I want to access a specific journal entry by date, with the previous day's goals 
-(one of the prompts) and the following week's analysis included (if available).
+U2. As a customer, I want to access a specific journal entry by date.
 
 ## 3. Project Scope
 
@@ -37,7 +34,7 @@ We will use API Gateway and Lambda to create two endpoints (GetEntry and CreateE
 We will store journal entries in a table in DynamoDB.
 
 *Enhance!* will also include a web interface to guide users in the creation and retrieval of journal entries. 
-A main page will allow users to input a date to download a previous entry and link to a page where they can compose a new entry.
+A main page will allow users to input a date to view a previous entry and link to a page where they can compose a new entry.
 
 ## 5. API
 
@@ -48,19 +45,19 @@ A main page will allow users to input a date to download a previous entry and li
 
 String userId;
 String date;
-S3link entry;
+String entry;
 ```
 
 ### 5.2. *Get Entry Endpoint*
 
 Accepts `GET` requests to `/entries/userId/date`
-Accepts a user ID and date and returns the corresponding entry file (stored on AWS S3).
+Accepts a user ID and date and returns the corresponding entry.
 If an entry for the given date is not found, will throw a `EntryNotFoundException`.
 
 ### 5.3 *Create Entry Endpoint*
 Accepts `POST` requests to `/entries/userId`
 Accepts data to create a new entry associated with the provided user ID and the date at the moment the request is made. 
-Returns the new entry. If the user ID does is not found, throws an `InvalidUserIdException`. If an entry with the given date already exists,
+Returns the new entry. If the user ID is invalid, throws an `InvalidUserIdException`. If an entry with the given date already exists,
 throws a `DuplicateEntryException`.
 
 
@@ -71,7 +68,7 @@ throws a `DuplicateEntryException`.
 // entries
 userId // partition key, string
 date // sort key, string
-entry // string (S3 link saved as JSON string)
+entry // string
 ```
 
 ## 7. Pages
