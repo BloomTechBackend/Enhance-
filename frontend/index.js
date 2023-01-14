@@ -11,7 +11,7 @@ function getEntryClick(event) {
    axios.get(url + userId + "/" + date).then((res) => {
       console.log(res);
       if (res.data.errorMessage != "Could not find journal entry with date " + date) {
-            entry.value = (res.data.entry);
+            entry.value = res.data.entry;
             entry.setAttribute("readonly", "");
        } else {
        entry.value = "Could not find journal entry with date " + date;

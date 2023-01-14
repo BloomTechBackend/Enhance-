@@ -3,6 +3,12 @@ let signIn = document.getElementById("sign in");
 let create = document.getElementById("create");
 let id = document.getElementById("id");
 
+window.onload = function(e){
+  if (localStorage.getItem("userId") != null) {
+        window.location.href = "index.html";
+  }
+}
+
 signIn.addEventListener("click", signInClick);
 
 create.addEventListener("click", createClick);

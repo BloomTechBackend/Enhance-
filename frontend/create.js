@@ -20,7 +20,7 @@ let count = 0;
 function nextClick(event) {
     if (count < 3) {
         prompt.innerText = prompts[count+1];
-        entry += prompts[count] + ": " + "\n\n" + tempEntry.value + "\n\n";
+        entry += prompts[count] + "\n\n" + tempEntry.value + "\n\n\n";
         tempEntry.value = "";
         tempEntry.focus();
         count += 1;
@@ -36,7 +36,8 @@ function nextClick(event) {
 }
 
 function submitEntryClick(event) {
-  entry += prompts[count] + ": " + "\n\n" + tempEntry.value + "\n\n";
+  entry += prompts[count] + "\n\n" + tempEntry.value + "\n\n\n";
+ next.removeEventListener("click", submitEntryClick)
   tempEntry.setAttribute("readonly", "");
   tempEntry.value = "please wait for up to 15 seconds";
 
@@ -49,7 +50,6 @@ function submitEntryClick(event) {
    axios.post(url + date, entryObj).then((res) => {
          console.log(res);
          tempEntry.value = "entry saved!"
-         next.removeEventListener("click", submitEntryClick)
          next.innerText = "return home";
          next.addEventListener("click", returnHomeClick);
     })
