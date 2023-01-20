@@ -32,6 +32,7 @@
       <module name="LibrariesAndUtilities.test" target="16" />
       <module name="module.main" target="16" />
       <module name="module.test" target="16" />
+      <module name="project" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -73,4 +73,4 @@ entry // string
 
 ## 7. Pages
 
-![](images/design_document/pageOverview.png)
+![](project_documents/images/design_document/pageOverview.png)
