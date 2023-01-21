@@ -29,9 +29,10 @@ U2. As a customer, I want to access a specific journal entry by date.
 
 This initial iteration will provide the minimum lovable product (MLP) including creating as well as retrieving a journal entry.
 
-We will use API Gateway and Lambda to create two endpoints (GetEntry and CreateEntry) that will handle the creation and retrieval of journal entries to satisfy our requirements.
+We will use API Gateway and Lambda to create two endpoints (GetEntry and CreateEntry) that will handle the creation and retrieval of journal entries to satisfy our requirements, 
+along with CreateUser and GetUser to store and check against userIDs. 
 
-We will store journal entries in a table in DynamoDB.
+We will store journal entries and users in two separate tables in DynamoDB.
 
 *Enhance!* will also include a web interface to guide users in the creation and retrieval of journal entries. 
 A main page will allow users to input a date to view a previous entry and link to a page where they can compose a new entry.
@@ -41,25 +42,37 @@ A main page will allow users to input a date to view a previous entry and link t
 ### 5.1. Public Models
 
 ```
-// EntryModel
-
+// JournalEntry
 String userId;
 String date;
 String entry;
+
+// User
+String userId;
 ```
 
 ### 5.2. *Get Entry Endpoint*
 
-Accepts `GET` requests to `/entries/userId/date`
+Accepts `GET` requests to `users/userId/date`
 Accepts a user ID and date and returns the corresponding entry.
-If an entry for the given date is not found, will throw a `EntryNotFoundException`.
+If the user ID is invalid, throws an `InvalidUserIdException`. If an entry for the given date is not found, will throw a `EntryNotFoundException`.
 
 ### 5.3 *Create Entry Endpoint*
-Accepts `POST` requests to `/entries/userId`
+Accepts `POST` requests to `/users/userId/date`
 Accepts data to create a new entry associated with the provided user ID and the date at the moment the request is made. 
 Returns the new entry. If the user ID is invalid, throws an `InvalidUserIdException`. If an entry with the given date already exists,
 throws a `DuplicateEntryException`.
 
+### 5.4 *Get User Endpoint*
+
+Accepts `GET` requests to `/users/userId`
+Accepts a userID to authenticate a user for sign-in purposes.
+If the user ID is not found, throws a `UserNotFoundException`.
+
+### 5.5 *Create User Endpoint*
+
+Accepts `POST` requests to `/users/userId`
+Generates, stores and returns a unique user ID.
 
 ## 6. Tables
 
@@ -69,6 +82,9 @@ throws a `DuplicateEntryException`.
 userId // partition key, string
 date // sort key, string
 entry // string
+
+// users
+userId // partition key, string
 ```
 
 ## 7. Pages
