@@ -10,9 +10,9 @@ the memory capacity and pattern-analysis returns on journaling-time investment.
 
 ## 2. Use Cases
 
-U1. As a customer, I want to write a journal entry in response to writing prompts. 
+U1. As a user, I want to write a journal entry in response to writing prompts. 
 
-U2. As a customer, I want to access a specific journal entry by date.
+U2. As a user, I want to access a specific journal entry by date.
 
 ## 3. Project Scope
 
@@ -34,7 +34,7 @@ along with CreateUser and GetUser to store and check against userIDs.
 
 We will store journal entries and users in two separate tables in DynamoDB.
 
-*Enhance!* will also include a web interface to guide users in the creation and retrieval of journal entries. 
+*Enhance!* will also comprise of a web interface to guide users in the creation and retrieval of journal entries. 
 A main page will allow users to input a date to view a previous entry and link to a page where they can compose a new entry.
 
 ## 5. API
